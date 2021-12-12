@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <script src="https://kit.fontawesome.com/ca36eba50f.js" crossorigin="anonymous"></script>
@@ -14,17 +14,25 @@
   <header>
 
     <a href="index.html">
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" title="Logo" alt="Le logo de fishEye"
+        aria-label="Aller à la page d'accueil" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button id="pourhoverbouton" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button id="pourhoverbouton" class="contact_button" aria-label="Cliquez ici pour contactez le photographe"
+        onclick="displayModal()">Contactez-moi</button>
     </div>
   </main>
   <div class="photograph-page">
     <div class="photograph-select">
-
+      <label>Trier par</label>
+      <select id="select" class="theSelect" aria-label="Choisir comment trier la gallery du photographe "
+        onchange="getSelectValue()">
+        <option value="Popularité">Popularité</option>
+        <option value="Date">Date</option>
+        <option value="Titre">Titre</option>
+      </select>
 
 
     </div>
@@ -34,25 +42,23 @@
   </div>
   <div class="modalbg" id="contact_modal">
     <div class="modal">
-      <header>
-        <h2 class="contactezmoi">Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      <header class="contactezmoi">
       </header>
       <form>
         <div>
-          <label>Prénom</label>
-          <input class="autreinput" />
+          <label for="prenom">Prénom</label>
+          <input class="autreinput" id="prenom" />
         </div>
         <div>
-          <label>Nom</label>
-          <input class="autreinput" />
+          <label for="nom">Nom</label>
+          <input class="autreinput" id="nom" />
         </div>
         <div>
-          <label>Email</label>
-          <input class="autreinput" />
+          <label for="email">Email</label>
+          <input class="autreinput" id="email" />
         </div>
         <div>
-          <label>Message</label>
+          <label for="inputmessage">Message</label>
           <input id="inputmessage" />
         </div>
         <button id="envoyerbutton" class="contact_button" onclick="closeModal()">Envoyer</button>

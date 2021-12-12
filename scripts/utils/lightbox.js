@@ -53,6 +53,7 @@ class Lightbox{
     }
 
 
+    
     /**
      * @param {MouseEvent} e  
      */
@@ -112,7 +113,7 @@ class Lightbox{
 }
 
 function init() {
-    const links = Array.from(document.querySelectorAll(`a[href$=".jpg"], a[href$=".jpeg"], a[href$=".mp4"]`))
+    const links = Array.from(document.querySelectorAll(`a[href$=".jpg"], a[href$=".mp4"]`))
     const gallery = links.map(link => link.getAttribute('href'))
     console.log(gallery)
     links.forEach(link => link.addEventListener('click', e => {
@@ -157,3 +158,16 @@ function titre(url) {
 
 }
 
+function onKeyUp(e) {
+        if (e.key === 'Escape') {
+            close(e)
+        }
+        else if (e.key === 'ArrowLeft') {
+            prev(e)
+        }
+        else if (e.key === 'ArrowRight') {
+            next(e)
+        }
+
+        console.log(e)
+    }
