@@ -15,6 +15,43 @@ class Lightbox{
         this.images = images
         const element = this.buildDOM(url)
         document.body.appendChild(element)
+        document.addEventListener("keyup", this.onKeyUp);
+    }
+
+
+    /**
+     * 
+     * @param {KeyboardEvent} e 
+     */
+    onKeyUp(e) {
+        if (e.key === "Escape") {
+            console.log(e)
+            document.querySelector('.lightbox').classList.add("closer");
+            window.setTimeout(() => {
+                document.querySelector('.lightbox').parentElement.removeChild(document.querySelector('.lightbox'))}
+            )
+        }
+
+        else if (e.key === "ArrowRight") {
+            const links = Array.from(document.querySelectorAll(`a[href$=".jpg"], a[href$=".jpeg"], a[href$=".mp4"]`))
+            const gallery = links.map(link => link.getAttribute('href'))
+            let index = gallery.findIndex(image => image === monurl)
+            if (index === gallery.length - 1) {
+                index=-1
+            }
+            loadMedia(gallery[index+1])
+        }
+
+        else if (e.key === "ArrowLeft") {
+            e.preventDefault()
+            const links = Array.from(document.querySelectorAll(`a[href$=".jpg"], a[href$=".jpeg"], a[href$=".mp4"]`))
+            const gallery = links.map(link => link.getAttribute('href'))
+            let index = gallery.findIndex(image => image === monurl)
+            if (index === 0) {
+                index=gallery.length
+            }
+            loadMedia(gallery[index-1])
+        }
     }
 
 
@@ -23,11 +60,11 @@ class Lightbox{
 
     /**
      * Ferme la lightbox
-     * @param {MouseEvent} e
+     * @param {MouseEvent | KeyboardEvent} e
      */
     close(e) {
         e.preventDefault()
-        
+        console.log(this.parentElement)
         this.parentElement.classList.add("closer");
         window.setTimeout(() => {
             this.parentElement.parentElement.removeChild(this.parentElement)}
@@ -35,7 +72,7 @@ class Lightbox{
     }
 
     /**
-     * @param {MouseEvent} e  
+     * @param {MouseEvent | KeyboardEvent} e
      */
 
     next(e) {
@@ -55,6 +92,7 @@ class Lightbox{
 
     
     /**
+     * 
      * @param {MouseEvent} e  
      */
 
@@ -110,6 +148,8 @@ class Lightbox{
     }
 
 
+    
+
 }
 
 function init() {
@@ -158,16 +198,4 @@ function titre(url) {
 
 }
 
-function onKeyUp(e) {
-        if (e.key === 'Escape') {
-            close(e)
-        }
-        else if (e.key === 'ArrowLeft') {
-            prev(e)
-        }
-        else if (e.key === 'ArrowRight') {
-            next(e)
-        }
 
-        console.log(e)
-    }

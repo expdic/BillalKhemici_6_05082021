@@ -29,3 +29,13 @@ envoyerbutton.addEventListener("click", (e) => {
     valMessage.value=""
     modal.style.display = "none";
 })
+
+window.addEventListener('keydown', (e) => {
+    e.preventDefault()
+    if (e.key === "Escape") {
+        const modal = document.getElementById("contact_modal");
+        modal.style.display = "none";
+
+    }
+
+})
