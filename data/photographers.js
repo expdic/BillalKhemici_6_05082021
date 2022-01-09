@@ -1,4 +1,5 @@
-{
+
+const data ={
 	"photographers": [
 		{
 			"name": "Mimi Keel",

@@ -114,31 +114,48 @@ class Lightbox{
 
     buildDOM(url) {
         const dom = document.createElement("div")
-        const p = document.createElement("p")
-        const title = titre(url)
-        p.textContent = title
         dom.classList.add('lightbox')
+        const buttonClose = document.createElement("button")
+        buttonClose.className = "lightbox_close"
+        const buttonPrev = document.createElement("button")
+        buttonPrev.className = "lightbox_prev"
+        const buttonNext = document.createElement("button")
+        buttonNext.className = "lightbox_next"
+        const iClose = document.createElement("i")
+        iClose.className = "fas fa-times"
+        const iPrev = document.createElement("i")
+        iPrev.className = "fas fa-chevron-left"
+        const iNext = document.createElement("i")
+        iNext.className = "fas fa-chevron-right"
+        const divCont = document.createElement("div")
+        divCont.className = "lightbox_container"
+        buttonClose.appendChild(iClose)
+        buttonPrev.appendChild(iPrev)
+        buttonNext.appendChild(iNext)
+        dom.appendChild(buttonClose)
+        dom.appendChild(buttonNext)
+        dom.appendChild(buttonPrev)
         
         if (url.substr(-3) === "jpg") {
-            dom.innerHTML= `<button class="lightbox_close"><i class="fas fa-times"></i></button>
-                <button class="lightbox_next"><i class="fas fa-chevron-right"></i></button>
-                <button class="lightbox_prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="lightbox_container">
-                    <img src="${url}">
-                    <p> ${title} </p>
-                </div>`
+            const title = titre(url)
+            const Img = document.createElement("img")
+            Img.setAttribute("src", url)
+            const P = document.createElement("p")
+            P.textContent = title
+            divCont.appendChild(Img)
+            divCont.appendChild(P)
+
         }
 
         else if (url.substr(-3) === "mp4") {
-            dom.innerHTML= `<button class="lightbox_close"><i class="fas fa-times"></i></button>
-                <button class="lightbox_next"><i class="fas fa-chevron-right"></i></button>
-                <button class="lightbox_prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="lightbox_container">
-                    <video controls>
-                        <source src="${url}">
-                    </video>
-                </div>`
+            const Vid = document.createElement("video")
+            Vid.setAttribute("src", url)
+            Vid.setAttribute("controls", "")
+            divCont.appendChild(Vid)
+            
         }
+
+        dom.appendChild(divCont)
 
 
         dom.querySelector('.lightbox_close').addEventListener('click', this.close)
@@ -178,13 +195,17 @@ function loadMedia(url) {
         const title = titre(url)
         p.textContent = title
         gall.appendChild(p)
+        console.log(title)
     }
 
     else if (url.substr(-3) === 'mp4') {
         const video = document.createElement("video")
+        const p = document.createElement("p")
         video.setAttribute("src", url)
         video.setAttribute("controls", "")
         gall.appendChild(video)
+
+
     }
 }
 
@@ -197,5 +218,4 @@ function titre(url) {
     return media1[0].title
 
 }
-
 

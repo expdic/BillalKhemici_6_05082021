@@ -1,3 +1,4 @@
+
 async function displayDataProfil(photographers) {
     const photographersHeadProfil = document.querySelector(".photograph-header");
 	
