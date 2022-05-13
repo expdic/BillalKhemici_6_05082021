@@ -12,22 +12,22 @@
 
 <body>
   <header>
-    <a href="index.html">
+    <a href="index.html" tabindex="0">
       <img src="assets/images/logo.png" class="logo" title="Logo" alt="Le logo de fishEye"
         aria-label="Aller à la page d'accueil" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button id="pourhoverbouton" class="contact_button" aria-label="Cliquez ici pour contactez le photographe"
-        onclick="displayModal()">Contactez-moi</button>
+      <button id="pourhoverbouton" class="contact_button" tabindex="0"
+        aria-label="Cliquez ici pour contactez le photographe" onclick="displayModal()">Contactez-moi</button>
     </div>
   </main>
   <div class="photograph-page">
     <div class="photograph-select">
       <label>Trier par</label>
       <select id="select" class="theSelect" aria-label="Choisir comment trier la gallery du photographe "
-        onchange="getSelectValue()">
+        onchange="getSelectValue()" tabindex="0">
         <option value="Popularité">Popularité</option>
         <option value="Date">Date</option>
         <option value="Titre">Titre</option>

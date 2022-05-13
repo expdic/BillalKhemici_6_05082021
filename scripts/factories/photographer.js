@@ -82,6 +82,7 @@ function mediaFactory(data) {
             picture.setAttribute("aria-label", "cliquez ici pour aggrandir l'image")
             a.setAttribute("href", img)
             a.setAttribute("aria-label", "cliquez ici pour aggrandir l'image")
+            a.setAttribute("tabindex", "0")
             a.appendChild(picture)
             figure.appendChild(a)
         }
@@ -94,6 +95,7 @@ function mediaFactory(data) {
             a.setAttribute("href", vid)
             a.setAttribute("aria-label", "cliquez ici pour aggrandir la vidéo")
             a.appendChild(picture)
+            a.setAttribute("tabindex", "0")
             figure.appendChild(a)
         }
 
@@ -101,6 +103,7 @@ function mediaFactory(data) {
         p.textContent = likes
         i.className = "fas fa-heart"
         i.setAttribute("aria-label", "Clique pour ajouter un j'aime")
+        i.setAttribute("tabindex", "0")
         i.addEventListener("click", function () {
             nbLike = i.parentElement.firstChild.textContent
             if (nbLike.toString() === data.likes.toString()){
